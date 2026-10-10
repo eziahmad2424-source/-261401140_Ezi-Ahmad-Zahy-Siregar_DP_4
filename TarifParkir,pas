@@ -1,0 +1,52 @@
+program TarifParkir;
+
+var
+  Kode: char;
+  Jam, Tarif: integer;
+
+begin
+  writeln('=== PROGRAM TARIF PARKIR ===');
+  writeln('M = Mobil');
+  writeln('K = Motor');
+  writeln('B = Bus');
+
+  write('Masukkan kode kendaraan: ');
+  readln(Kode);
+
+  write('Lama parkir (jam): ');
+  readln(Jam);
+
+  if Jam <= 0 then
+    writeln('Lama parkir tidak valid!')
+  else
+  begin
+    case Kode of
+      'M', 'm':
+        if Jam > 10 then
+          Tarif := 30000
+        else
+          Tarif := 5000 + (Jam - 1) * 3000;
+
+      'K', 'k':
+        if Jam > 10 then
+          Tarif := 10000
+        else
+          Tarif := 2000 + (Jam - 1) * 1000;
+
+      'B', 'b':
+        if Jam > 10 then
+          Tarif := 50000
+        else
+          Tarif := 10000 + (Jam - 1) * 5000;
+    else
+      Tarif := -1;
+    end;
+
+    if Tarif = -1 then
+      writeln('Kode kendaraan tidak valid!')
+    else
+      writeln('Total tarif: Rp', Tarif);
+  end;
+
+  readln;
+end.
